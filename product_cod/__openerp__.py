@@ -35,7 +35,7 @@
 This module change Reference Internal for Codigo of products
     """,
     "data": [
-        "views/product_view.xml",
+        #"views/product_view.xml",
         #"security/ir.model.access.csv",
     ],
     "installable": True,
