@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+        <record model="ir.ui.view" id="view_fixed_asset_form" >
+            <field name="name">fixed.asset.form</field>
+            <field name="model">account.asset.asset</field>
+            <field name="inherit_id" ref="account_asset.view_account_asset_asset_form" />
+            <field name="arch" type="xml">
+                <button name="open_entries" position="attributes" >
+                    <attribute name="invisible">1</attribute>
+                </button>
+                 <!--<button name="set_to_draft" position="before" >
+                      <button name="set_print" string="Imprimir" type="object" class="oe_highlight" icon="gtk-print"/>
+                </button>-->
+                <field name="code" position="replace"/>
+                <field name="parent_id" position="replace"/>
+                <field name="category_id" position="before">
+                    <field name="code"/>
+                    <field name="code_correlative_asset" invisible="True"/>
+                    <field name="description"/>
+                    <field name="state_asset"/>
+                    <field name="brand"/>
+                    <field name="model"/>
+                    <field name="color"/>
+                    <field name="serial_number"/>
+                    <field name="code_sai"/>
+                    <separator string=" " colspan="4"/>
+
+                </field>
+                <field name="code" position="attributes">
+                    <attribute name="string">Código</attribute>
+                </field>
+                <field name="category_id" position="attributes">
+                    <attribute name="string">Grupo contable</attribute>
+                </field>
+                <field name="category_id" position="after">
+                    <field name="auxiliary_group_id" /> <!--domain="[('category_id','=',category_id)]"/> -->                   
+                </field>
+                <field name="purchase_date" position="attributes">
+                    <attribute name="string">Fecha activación</attribute>
+                </field>
+                <field name="purchase_date" position="after">
+                    <separator string="Tipo de Cambio y UFV" colspan="4"/>
+                    <field name="ufv" />
+                    <field name='fecha_usd' invisible="True"/>
+                    <field name='exchange_type'/>
+                    <separator string="Ubicación" colspan="4"/>
+                    <field name="area_id"/>
+                    <field name="responsable_id"/>
+                    <field name="position"/>
+                </field>
+                <field name="purchase_value" position="replace"/>
+                <field name="salvage_value" position="attributes" >
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="value_residual" position="attributes" >
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="method" position="attributes" >
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="prorata" position="attributes" >
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="method_period" position="attributes" >
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="currency_id" position="attributes" >
+                    <attribute name="invisible">1</attribute>
+                </field>
+                
+
+                <field name="partner_id" position="replace"/>
+                <xpath expr="//page[@string='General']" position="before">
+                    <page string="Datos Generales" >
+                        <group>
+                            <group col="6" colspan="2">
+                                <field name="purchase_value" widget="monetary" 
+                                options="{'currency_field': 'currency_id'}" />
+                                <!-- on_change="onchange_purchase_salvage_value(purchase_value, salvage_value)"/> -->
+                                 <field name="init_acum_depre" />
+                                 <field name="actual_factor" />
+                                <field name="year_life" />
+                                <field name="rate_depreciate"/>
+                                <field name="dep_gestion"/>   
+                                <field name="initial_cost_usd" />                                
+                            </group>
+                            <group col="6" colspan="2">                          
+                                <field name="actual_value" />
+                                <field name="dep_acumulada"/>
+                                <field name="valor_neto"/>                                
+                            </group>
+                        </group>
+                        <group col="8" colspan="2">
+                            <field name="date_actual" />
+                            <field name="ufv_actual" />  
+                            <field name="day_life" /> 
+                        </group>
+                       
+                    </page>
+                </xpath>    
+
+                <xpath expr="//page[@string='Depreciation Board']" position="before">
+                    <page string="Datos de compra" >
+                        <group>
+                            <group>
+                                <field name="purchase_date_invoice" /> 
+                                <field name="partner_id" /> 
+                            </group>
+                            <group>    
+                                <field name="number_invoice" /> 
+                                <field name="warranty"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+                <xpath expr="//page[@string='Depreciation Board']" position="attributes">
+                     <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//page[@string='History']" position="attributes">
+                     <attribute name="invisible">1</attribute>
+                </xpath>
+                <page string="General" position="attributes">
+                      <attribute name="invisible">1</attribute>
+                </page>
+
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_group_asset_form" >
+            <field name="name">group.asset.form</field>
+            <field name="model">account.asset.category</field>
+            <field name="inherit_id" ref="account_asset.view_account_asset_category_form" />
+            <field name="arch" type="xml">
+
+                <field name="name" position="before">
+                    <field name="code"/>
+                    <field name="abbreviation"/>
+                </field>
+                <field name="journal_id" position="attributes" >
+                    <attribute name="required">False</attribute>
+                    <attribute name="invisible">True</attribute>
+                </field>
+                <field name="account_asset_id" position="attributes" >
+                    <attribute name="required">False</attribute>
+                    <attribute name="invisible">True</attribute>
+                </field>
+                <field name="account_depreciation_id" position="attributes" >
+                    <attribute name="required">False</attribute>
+                    <attribute name="invisible">True</attribute>
+                </field>
+                <field name="account_expense_depreciation_id" position="attributes" >
+                    <attribute name="required">False</attribute>
+                    <attribute name="invisible">True</attribute>
+                </field>
+                <field name="method_time" position="attributes" >
+                    <attribute name="invisible">True</attribute>
+                </field>
+                <field name="method_period" position="attributes" >
+                    <attribute name="invisible">True</attribute>
+                </field>
+                <field name="method_number" position="attributes" >
+                    <attribute name="string">Vida útil</attribute>
+                </field>
+             <!--   <group string="Depreciation Method" position="before" >
+                    <group string=" " >
+                        <field name='depreciate'></field>
+                        <field name='actualize'></field>
+                    </group>
+                </group>-->
+                <group string="Depreciation Method" position="attributes" >
+                    <attribute name="invisible">True</attribute>
+                </group>
+    
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_account_asset_group_tree">
+            <field name="name">account.asset.group.tree</field>
+            <field name="model">account.asset.category</field>
+            <field name="inherit_id" ref="account_asset.view_account_asset_category_tree" />
+            <field name="arch" type="xml">
+                <field name="journal_id" position='replace'/>
+                <field name="method" position="replace"/>
+                <field name="name" position="before">
+                    <field name="code"/>
+                </field>
+                <field name="name" position="after">
+                    <field name="abbreviation"/>
+                </field>
+            </field>
+        </record>
+        <!-- vista Formulario Responsable -->
+        <record model="ir.ui.view" id="view_asset_responsable_form">
+            <field name="name">asset.responsable.form</field>
+            <field name="model">asset.responsable</field>
+            <field name="arch" type="xml">
+                <form string="Responsable">
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="area_id"/>
+                            <field name="position"/>
+                        </group>
+                        <group>
+                            <field name="ci"/>
+                            <field name="issued"/>
+                            <field name="status"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <!--vista Formulario Area -->
+        <record model="ir.ui.view" id="view_account_asset_area_form">
+            <field name="name">asset.area.form</field>
+            <field name="model">account.asset.area</field>
+            <field name="arch" type="xml">
+                <form string="Ubicaciones">
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="name"/>
+                            <field name="cost_center_id"/>
+                            <field name="office_id"/>
+                            <field name="responsable_id"/>
+                        </group>
+                        <group>
+                            <field name="active"/>
+                            <field name="note"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <!-- vista formulario para oficina -->
+        <record model="ir.ui.view" id="view_account_asset_office_form">
+            <field name="name">asset.office.form</field>
+            <field name="model">account.asset.office</field>
+            <field name="arch" type="xml">
+                <form string="Oficina">
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="name"/>
+                            <field name="description"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+            <!-- UFV tree view -->
+        <record model="ir.ui.view" id="view_account_asset_ufv_tree" >
+          <field name="name">Indice UFV</field>
+          <field name="model">account.asset.ufv</field>
+          <field name="arch" type="xml">
+            <tree string="Indice UFV" >
+              <field name="ufv"/>
+              <field name="name"/>
+            </tree>
+          </field>
+        </record>
+      
+        <record model="ir.actions.act_window" id="action_account_asset_ufv_tree">
+            <field name="name">Indice UFV</field>
+            <field name="res_model">account.asset.ufv</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="view_account_asset_ufv_tree"/>
+        </record>
+        <menuitem parent="account_asset.menu_finance_assets" id="menu_action_account_asset_ufv_tree"
+                sequence="8"
+                action="action_account_asset_ufv_tree"/>    
+
+              <!-- Tipo de cambio tree view -->
+        <record model="ir.ui.view" id="view_account_asset_exchange_rate_tree" >
+          <field name="name">Tipo de Cambio</field>
+          <field name="model">account.asset.exchange.rate</field>
+          <field name="arch" type="xml">
+            <tree string="Tipo de cambio" >
+              <field name="name"/>
+              <field name="change_type"/>
+            </tree>
+          </field>
+        </record>
+      
+        <record model="ir.actions.act_window" id="action_account_asset_exchange_rate_tree">
+            <field name="name">Tipo de Cambio</field>
+            <field name="res_model">account.asset.exchange.rate</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="view_account_asset_exchange_rate_tree"/>
+        </record>
+        <menuitem parent="account_asset.menu_finance_assets" id="menu_action_account_asset_exchange_rate_tree"
+                sequence="7"
+                action="action_account_asset_exchange_rate_tree"/>    
+
+        <!-- Aqui se crea la acción para abrir el formulario de cuentas contables-->
+        <record model="ir.actions.act_window" id="action_account_asset_category_tree">
+            <field name="name">Cuentas contables</field>
+            <field name="res_model">account.asset.category</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="account_asset.view_account_asset_category_tree"/>
+        </record>
+        <!--Aquí se crea el menú para abrir el formulario de cuentas contables-->
+        <menuitem parent="account_asset.menu_finance_assets" id="menu_action_account_asset_category_tree"
+                sequence="10"
+                action="action_account_asset_category_tree"/>  
+
+        <!-- vista formulario para Grupo Auxiliar -->
+        <record model="ir.ui.view" id="view_account_asset_auxiliary_group_form">
+            <field name="name">asset.auxiliary.group.form</field>
+            <field name="model">account.asset.auxiliary.group</field>
+            <field name="arch" type="xml">
+                <form string="Grupo Auxiliar">
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="name"/>
+                            <field name="category_id"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+        <!-- Grupo auxiliar tree view -->
+        <record model="ir.ui.view" id="view_account_asset_auxiliary_group_tree" >
+          <field name="name">Grupo Auxiliar</field>
+          <field name="model">account.asset.auxiliary.group</field>
+          <field name="arch" type="xml">
+            <tree string="Grupo Auxiliar">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="category_id"/>
+            </tree>
+          </field>
+        </record>
+      
+        <record model="ir.actions.act_window" id="action_account_asset_auxiliary_group_tree">
+            <field name="name">Grupo Auxiliar</field>
+            <field name="res_model">account.asset.auxiliary.group</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="view_account_asset_auxiliary_group_tree"/>
+        </record>
+        <menuitem parent="account_asset.menu_finance_assets" id="menu_action_account_asset_exchange_rate_tree"
+                sequence="11"
+                action="action_account_asset_auxiliary_group_tree"/> 
+        
+     <!--   <act_window id="act_print_label" name="Imprimir Etiqueta" res_model="account.move.line" key2="client_print_multi"
+         src_model="account.asset.asset" context="{'search_default_asset_id': [active_id], 'default_asset_id': active_id}"/>-->
+    
+    </data>
+</openerp>

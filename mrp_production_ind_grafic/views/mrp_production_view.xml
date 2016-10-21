@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="mrp_production_ind_grafic_tree_view" model="ir.ui.view">
+            <field name="name">mrp.production.ind.grafic.tree</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_tree_view" />
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="partner" />
+                </field>
+            </field>
+        </record>
+
+        <record id="mrp_production_ind_grafic_form_view" model="ir.ui.view">
+            <field name="name">mrp.production.ind.grafic.form.view</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+            <field name="arch" type="xml">
+                 <xpath expr="//button[@name='button_confirm']" position="before">
+                    <button name="button_design" states="draft" string="Confirm Design" class="oe_highlight"/>
+                    <button name="button_ok_customer" states="diagramming" string="Confirm Customer" class="oe_highlight"/>
+                </xpath>
+
+                <button name="button_confirm" position="attributes">
+                    <attribute name="groups">mrp.group_mrp_manager</attribute>
+                    <attribute name="states">approved_customer</attribute>
+                </button>
+                <button name="button_cancel" position="attributes">
+                    <attribute name="groups">mrp.group_mrp_manager</attribute>
+                    <attribute name="states">draft,diagramming,approved_customer,ready,in_production</attribute>
+                </button>
+                <xpath expr="//button[@string='Produce']" position="attributes">
+                    <attribute name="groups">mrp.group_mrp_manager</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_assign']" position="attributes">
+                    <attribute name="groups">mrp.group_mrp_manager</attribute>
+                </xpath>
+                <xpath expr="//button[@name='force_production']" position="attributes">
+                    <attribute name="groups">mrp.group_mrp_manager</attribute>
+                </xpath>
+                <xpath expr="//button[@name='button_produce']" position="attributes">
+                    <attribute name="groups">mrp.group_mrp_manager</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_cancel']" position="attributes">
+                    <attribute name="groups">mrp.group_mrp_manager</attribute>
+                </xpath>
+
+                <field name="state" position="attributes">
+                    <attribute name="statusbar_visible">draft,diagramming,approved_customer,ready,in_production,done</attribute>
+                </field>
+
+                <field name="name" position="attributes">
+                    <attribute name="string">Solicitud de Trabajo</attribute>
+                </field>
+                 <field name="name" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </field>
+                 <field name="product_id" position="before">
+                    <field name="type_work" />
+                </field>
+                <field name="product_id" position="before">
+                    <separator string=" " colspan="4"/>
+                    <field name="partner" string="Empresa" domain="[('is_company','=',True)]" />
+                    <field name="cod_partner_product" />
+                    <field name="nit_ci" />
+                    <field name="partner_child_ids" domain="[('parent_id','=',partner)]"/>
+                    <field name="street"/>
+                    <field name="phone"/>
+                    <separator string=" " colspan="4"/>
+                </field>
+                <field name="product_id" position="attributes">
+                    <attribute name="string">Nombre de Formulario</attribute>
+                    <!-- <attribute name="string">I have to...</attribute>  -->
+                </field>
+                <field name="product_id" position="after">
+                    <!-- <field name="paper_type" domain="[('type','=','consu')]"/> -->
+                    <field name="paper_type" />
+                    <field name="gramaje" domain="[('paper_type_id','=',paper_type)]"/>
+                    <field name="specification" />
+                </field>
+                
+                <!--ALMACEN DE ORIGEN - ALMACEN DE DESTINO -->
+                <field name="location_src_id" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="location_dest_id" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+
+                <field name="date_planned" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+
+                <field name="bom_id" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="routing_id" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="user_id" position="before">
+                    <field name="date_order" />
+                    <field name="date_design" />
+                    <!-- <field name="date_planned" string="Fecha y hora a producción"/> -->
+                    <field name="date_commit" />
+                    <separator string=" " colspan="4"/>
+                </field>
+                <field name="origin" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <page string="Extra Information" position="attributes">
+                    <attribute name='invisible'>1</attribute>
+                </page>
+                 <!-- <page string="Scheduled Products" position="attributes">
+                    <attribute name='invisible'>1</attribute>
+                </page>
+                <group string="Products to Consume" position="attributes">
+                    <attribute name='invisible'>1</attribute>
+                </group>
+                <group string="Consumed Products" position="attributes">
+                    <attribute name='invisible'>1</attribute>
+                </group> -->
+
+                <xpath expr="//page[@string='Consumed Products']" position="before">
+                    <page name="formulario" string="Formulario">
+                        <group>
+                            <group string="Medidas">
+                                <!-- <separator string="Medidas" colspan="4"/> -->
+                                 <label for="width" string="Ancho"/>
+                                <!-- <div>
+                                <label for="width" string="Ancho" attrs="{'invisible': [('type_work', '=', 'sobre')]}"/>
+                                <label string="Ancho Abierto" attrs="{'invisible': [('type_work', '!=', 'sobre')]}"/>
+                                </div> -->
+                                <div>
+                                    <field name="width" class="oe_inline" style="width: 45%" nolabel="1"/>
+                                    <label for="unid_width" string=" " />
+                                    <field name="unid_width"  class="oe_inline" style="width: 30%" nolabel="1"/>
+                                </div>
+                                <label for="height" string="Alto"/>
+                                <div>
+                                    <field name="height" class="oe_inline" style="width: 30%"/>
+                                    <label for="unid_high" string=" "/>
+                                    <field name="unid_high"  class="oe_inline" style="width: 30%"/>
+                                </div>
+
+                                <field name="via"  attrs="{'invisible':[('type_work', '=', 'sobre')]}" />
+                                <separator string=" " colspan="4"/>
+
+                                <field name="troquel"  />
+                                <field name="separation" attrs="{'invisible':[('troquel', '=', False)]}"/>
+
+                                <field name="horizontal_cut" domain="[('height_id','=',height)]"  attrs="{'invisible':[('troquel', '=', False)]}"/><!-- domain="[('high_id','=',high)]" -->
+                                <field name="vertical_cut" attrs="{'invisible':[('troquel', '=', False)]}" />
+                                <field name="vertical_cut_type" attrs="{'invisible':[('vertical_cut', '=', False)]}" />
+                                <separator string="" colspan="4"/>
+                                <field name="reel" attrs="{'invisible':[('type_work', '!=', 'continuo')], 'required': [('type_work', '=', 'continuo')]}"/>
+                                <field name="catch" attrs="{'invisible':[('type_work', '!=', 'continuo')], 'required': [('type_work', '=', 'continuo')]}" />
+                            </group>
+                            <group>
+                                <separator string="" colspan="4"/>
+                                <field name="preimp_ids" widget="many2many_checkboxes"/>
+                                <!-- many2many_tags many2many_checkboxes -->
+                                <separator string="" colspan="4"/>
+                                <field name="engotam" attrs="{'invisible':[('type_work', '!=', 'continuo')]}" />
+                                <separator string="" colspan="4"/>
+                                <field name="numeration" attrs="{'invisible':['|',('type_work', '=', 'rollo'),('type_work','=','sobre')]}"/>
+                                <field name="initial_number" attrs="{'invisible':[('numeration', '=', False)]}" />
+                                <field name="end_number" attrs="{'invisible':[('numeration', '=', False)]}" />
+                                <field name="color_number" attrs="{'invisible':[('numeration', '=', False)]}" />
+                                <separator string="" colspan="4"/>
+                                <field name="binding" attrs="{'invisible':[('type_work', '!=', 'pliego')]}" />
+                                <separator string="" colspan="4"/>
+
+                                <field name="box_cant" attrs="{'invisible':[('type_work', '=', 'sobre')]}"/>
+                                <!-- <separator string="" colspan="4"/> -->
+                                <label for="block_cant_sel" string="Cantidad por" attrs="{'invisible':[('type_work', '!=', 'pliego')]}"/>
+                                <div attrs="{'invisible':[('type_work', '!=', 'pliego')]}" >
+                                    <field name="block_cant_sel" class="oe_inline" style="width: 45%"/>
+                                    <label for="block_cant" string="  " />
+                                    <field name="block_cant"  class="oe_inline" style="width: 30%"/>
+                                </div>
+
+                                <label for="block_set_sel" string="Cantidad juegos por" attrs="{'invisible':[('type_work', '!=', 'pliego')]}"/>
+                                <div attrs="{'invisible':[('type_work', '!=', 'pliego')]}" >
+                                    <field name="block_set_sel" class="oe_inline" style="width: 45%"/>
+                                    <label for="block_set" string="  " />
+                                    <field name="block_set"  class="oe_inline" style="width: 30%"/>
+                                </div>
+
+                                <label for="sheet_set_sel" string="Cantidad de hojas por" attrs="{'invisible':[('type_work', '!=', 'pliego')]}"/>
+                                <div attrs="{'invisible':[('type_work', '!=', 'pliego')]}">
+                                    <field name="sheet_set_sel" class="oe_inline" style="width: 45%"/>
+                                    <label for="sheet_set" string="  " />
+                                    <field name="sheet_set"  class="oe_inline" style="width: 30%"/>
+                                </div>
+
+                            </group>
+                            <group string="Detalle de Vias" attrs="{'invisible':[('type_work', '=', 'sobre')]}"  >
+                                <field name="vias_lines" nolabel="1" >
+                                    <tree string="Vias" editable="bottom" create="false" delete="false" >
+                                        <!-- <field name="vias_lines"/> -->
+                                        <field name="name" widget="selection" readonly="1"/>
+                                        <field name="color_print" />
+                                        <field name="color_paper" />
+                                        <field name="purpose" />
+                                        <field name="reverse" />
+                                        <!-- attrs="{'readonly':[('mrp.production.preimp_ids', '=', 'Reverso')]}"/> -->
+                                        <!-- <field name="via_id" /> -->
+                                    </tree>
+                                </field>
+                            </group>
+
+                            <group string="Otros Detalles" >
+
+                                <field name="note"/>
+                                <field name="costing"/>
+                                <field name="price_for"/>
+                                <field name="unit_price"/>
+                                <field name="total_price"/>
+                                <field name="metho_pay"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page name="Diagramacion" string="Diagramación" groups="mrp.group_mrp_manager">
+                        <group>
+                            <group string="Fecha ingreso">
+                                <field name="date_entry" />
+                                <field name="date_entry_s" />
+                            </group>
+                            <group string="Fecha entrega">
+                                <field name="date_delivery" />
+                                <field name="date_delivery_s" />
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+                <page string="Consumed Products" position="attributes">
+                    <attribute name="string">Datos de Producción</attribute>
+                    <attribute name="groups">mrp.group_mrp_manager</attribute>
+                </page>
+                <xpath expr="//group[@string='Products to Consume']" position="before">
+                    <group>
+                        <field name="date_planned" string="Fecha y hora a producción"/>
+                        <field name="bom_id"/>
+                    </group>
+                    <group>
+                        <field name="routing_id"/>
+                    </group>
+                    <group string="Materia Prima" colspan="6">
+                        <field name="raw_material_lines" nolabel="1" >
+                            <tree string="Material" editable="bottom">
+                                <field name="name" widget="selection"/>
+                                <field name="kg" style="width:5px" />
+                                <field name="percentage"/>
+                                <field name="demasia"/>
+                                <field name="total"/>
+                                <field name="paper_processing" />
+                                <field name="total_load" />
+                                <field name="coil_width" />
+                                <field name="high_form" />
+                                <field name="unid_high_form" />
+                                <field name="armed" />
+                            </tree>
+                        </field>
+                    </group>
+                </xpath>
+                <xpath expr="//group[@string='Consumed Products']" position="after">
+                    <group string="Placas/Tintas e Insumos">
+                        <field name="plaque"/>
+                        <field name="box"/>
+                        <field name="cone"/>
+                    </group>
+                    <group>
+                        <field name="other"/>
+                        <field name="inst_esp"/>
+                    </group>
+                </xpath>
+                <page string="Finished Products" position="attributes">
+                    <attribute name='groups'>mrp.group_mrp_manager</attribute>
+                </page>
+                 <page string="Work Orders" position="attributes">
+                    <attribute name='groups'>mrp.group_mrp_manager</attribute>
+                </page>
+                <!-- <button name="action_compute" position="attributes">
+                    <attribute name='invisible'>1</attribute>
+                </button>  -->
+            </field>
+        </record>
+
+        <record id="mrp_production_sale_info_search_view" model="ir.ui.view">
+            <field name="name">mrp.production.sale.info.search</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.view_mrp_production_filter" />
+            <field name="arch" type="xml">
+                <field name="product_id" position="after">
+                    <field name="partner" />
+                </field>
+            </field>
+        </record>
+
+
+    </data>
+</openerp>

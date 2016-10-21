@@ -1,0 +1,21 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_horizontal_cut_attribute,horizontal_cut_attribute,model_horizontal_cut,mrp.group_mrp_user,1,1,1,1
+access_original_copy_attribute,original_copy_attribute,model_original_copy,mrp.group_mrp_user,1,1,1,1
+access_mrp_preimpreso_attribute,mrp_preimpreso_attribute,model_mrp_preimpreso,mrp.group_mrp_user,1,1,1,1
+access_mrp_type_paper_attribute,mrp_type_paper_attribute,model_mrp_type_paper,mrp.group_mrp_user,1,1,1,1
+access_mrp_gramaje_attribute,mrp_gramaje_attribute,model_mrp_gramaje,mrp.group_mrp_user,1,1,1,1
+access_product_product_user,product.product user,product.model_product_product,mrp.group_mrp_user,1,1,1,1
+access_product_template_user,product.template user,product.model_product_template,mrp.group_mrp_user,1,1,1,1
+access_pricelist_partnerinfo_mrp_manager,pricelist.partnerinfo mrp_manager,product.model_pricelist_partnerinfo,mrp.group_mrp_user,1,1,1,1
+access_product_price_type_mrp_manager,product.price.type mrp_manager,product.model_product_price_type,mrp.group_mrp_user,1,1,1,1
+access_product_pricelist_type_mrp_manager,product.pricelist.type mrp_manager,product.model_product_pricelist_type,mrp.group_mrp_user,1,1,1,1
+access_product_pricelist_mrp_manager,product.pricelist mrp_manager,product.model_product_pricelist,mrp.group_mrp_user,1,1,1,1
+access_ir_property_group_product_mrp_manager,ir_property group_product_mrp_manager,base.model_ir_property,mrp.group_mrp_user,1,1,1,1
+access_product_group_res_partner_mrp_manager,res_partner group_mrp_manager,base.model_res_partner,mrp.group_mrp_user,1,1,1,0
+access_product_pricelist_version_mrp_manager,product.pricelist.version mrp_manager,product.model_product_pricelist_version,mrp.group_mrp_user,1,1,1,1
+access_product_pricelist_item_mrp_manager,product.pricelist.item mrp_manager,product.model_product_pricelist_item,mrp.group_mrp_user,1,1,1,1
+access_product_price_history_mrp_user,product.price.history mrp_user,product.model_product_price_history,mrp.group_mrp_user,1,1,1,1
+access_horizontal_cut_attribute,horizontal_cut_attribute,model_horizontal_cut,base.group_sale_salesman_all_leads,1,1,1,1
+access_original_copy_attribute,original_copy_attribute,model_original_copy,base.group_sale_salesman_all_leads,1,1,1,1
+access_mrp_preimpreso_attribute,mrp_preimpreso_attribute,model_mrp_preimpreso,base.group_sale_salesman_all_leads,1,1,1,1
+access_mrp_raw_material_attribute,mrp_raw_material_attribute,model_mrp_raw_material,mrp.group_mrp_user,1,1,1,1

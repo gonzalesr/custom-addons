@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+		<record id="cuenta_contable_terreno" model="account.asset.category">
+			<field name="account_expense_depreciation_id" ref="account.a_expense"/>
+            <field name="account_asset_id" ref="account.xfa"/>
+            <field name="account_depreciation_id" ref="account.xfa"/>
+            <field name="journal_id" ref="account.expenses_journal"/>
+		    <field name="code">01</field>
+		    <field name="abbreviation">TE</field>
+		    <field name="name">TERRENOS</field>
+		    <field name="method_number">60</field>
+		</record>
+		<record id="cuenta_contable_edificio" model="account.asset.category">
+			<field name="account_expense_depreciation_id" ref="account.a_expense"/>
+            <field name="account_asset_id" ref="account.xfa"/>
+            <field name="account_depreciation_id" ref="account.xfa"/>
+            <field name="journal_id" ref="account.expenses_journal"/>
+		    <field name="code">02</field>
+		    <field name="abbreviation">ED</field>
+		    <field name="name">EDIFICIOS</field>
+		    <field name="method_number">40</field>
+		</record>
+		<record id="cuenta_contable_mueble" model="account.asset.category">
+			<field name="account_expense_depreciation_id" ref="account.a_expense"/>
+            <field name="account_asset_id" ref="account.xfa"/>
+            <field name="account_depreciation_id" ref="account.xfa"/>
+            <field name="journal_id" ref="account.expenses_journal"/>
+		    <field name="code">03</field>
+		    <field name="abbreviation">MU</field>
+		    <field name="name">MUEBLES Y ENSERES</field>
+		    <field name="method_number">10</field>
+		</record>
+		<record id="cuenta_contable_maquinaria" model="account.asset.category">
+			<field name="account_expense_depreciation_id" ref="account.a_expense"/>
+            <field name="account_asset_id" ref="account.xfa"/>
+            <field name="account_depreciation_id" ref="account.xfa"/>
+            <field name="journal_id" ref="account.expenses_journal"/>
+		    <field name="code">04</field>
+		    <field name="abbreviation">MQ</field>
+		    <field name="name">MAQUINARIA Y EQUIPO</field>
+		    <field name="method_number">8</field>
+		</record>
+		<record id="cuenta_contable_eqof" model="account.asset.category">
+			<field name="account_expense_depreciation_id" ref="account.a_expense"/>
+            <field name="account_asset_id" ref="account.xfa"/>
+            <field name="account_depreciation_id" ref="account.xfa"/>
+            <field name="journal_id" ref="account.expenses_journal"/>
+		    <field name="code">05</field>
+		    <field name="abbreviation">EO</field>
+		    <field name="name">EQUIPO DE OFICINA</field>
+		    <field name="method_number">8</field>
+		</record>
+		<record id="cuenta_contable_vehiculo" model="account.asset.category">
+			<field name="account_expense_depreciation_id" ref="account.a_expense"/>
+            <field name="account_asset_id" ref="account.xfa"/>
+            <field name="account_depreciation_id" ref="account.xfa"/>
+            <field name="journal_id" ref="account.expenses_journal"/>
+		    <field name="code">06</field>
+		    <field name="abbreviation">VH</field>
+		    <field name="name">VEHICULOS</field>
+		    <field name="method_number">5</field>
+		</record>
+		<record id="cuenta_contable_comput" model="account.asset.category">
+			<field name="account_expense_depreciation_id" ref="account.a_expense"/>
+            <field name="account_asset_id" ref="account.xfa"/>
+            <field name="account_depreciation_id" ref="account.xfa"/>
+            <field name="journal_id" ref="account.expenses_journal"/>
+		    <field name="code">08</field>
+		    <field name="abbreviation">EC</field>
+		    <field name="name">EQUIPOS DE COMPUTACION</field>
+		    <field name="method_number">4</field>
+		</record>
+		<record id="cuenta_contable_instal" model="account.asset.category">
+			<field name="account_expense_depreciation_id" ref="account.a_expense"/>
+            <field name="account_asset_id" ref="account.xfa"/>
+            <field name="account_depreciation_id" ref="account.xfa"/>
+            <field name="journal_id" ref="account.expenses_journal"/>
+		    <field name="code">09</field>
+		    <field name="abbreviation">IN</field>
+		    <field name="name">INSTALACIONES</field>
+		    <field name="method_number">10</field>
+		</record>
+		<record id="cuenta_contable_ei" model="account.asset.category">
+			<field name="account_expense_depreciation_id" ref="account.a_expense"/>
+            <field name="account_asset_id" ref="account.xfa"/>
+            <field name="account_depreciation_id" ref="account.xfa"/>
+            <field name="journal_id" ref="account.expenses_journal"/>
+		    <field name="code">11</field>
+		    <field name="abbreviation">EI</field>
+		    <field name="name">EQUIPO INDUSTRIAL</field>
+		    <field name="method_number">8</field>
+		</record>
+		<record id="cuenta_contable_he" model="account.asset.category">
+			<field name="account_expense_depreciation_id" ref="account.a_expense"/>
+            <field name="account_asset_id" ref="account.xfa"/>
+            <field name="account_depreciation_id" ref="account.xfa"/>
+            <field name="journal_id" ref="account.expenses_journal"/>
+		    <field name="code">12</field>
+		    <field name="abbreviation">HE</field>
+		    <field name="name">HERRAMIENTAS</field>
+		    <field name="method_number">4</field>
+		</record>
+		<record id="cuenta_contable_otr" model="account.asset.category">
+			<field name="account_expense_depreciation_id" ref="account.a_expense"/>
+            <field name="account_asset_id" ref="account.xfa"/>
+            <field name="account_depreciation_id" ref="account.xfa"/>
+            <field name="journal_id" ref="account.expenses_journal"/>
+		    <field name="code">10</field>
+		    <field name="abbreviation">ES</field>
+		    <field name="name">OTROS ACTIVOS</field>
+		    <field name="method_number">8</field>
+		</record>
+		<!--Datos de inicio para centros de costo-->
+		<record id="centro_costo_adm" model="account.asset.cost.center">
+		    <field name="code">01</field>
+		    <field name="name">ADMINISTRACION</field>
+		</record>
+		<record id="centro_costo_com" model="account.asset.cost.center">
+		    <field name="code">02</field>
+		    <field name="name">COMERCIALIZACION</field>
+		</record>
+		<record id="centro_costo_prod" model="account.asset.cost.center">
+		    <field name="code">03</field>
+		    <field name="name">PRODUCCION</field>
+		</record>
+
+		<!--Datos Oficinas/Sucursales -->
+		<record id="oficina_sc" model="account.asset.office">
+		    <field name="code">01</field>
+		    <field name="name">Santa Cruz</field>
+		</record>
+		<record id="oficina_cbba" model="account.asset.office">
+		    <field name="code">02</field>
+		    <field name="name">Cochabamba</field>
+		</record>
+		<record id="oficina_lp" model="account.asset.office">
+		    <field name="code">03</field>
+		    <field name="name">La Paz</field>
+		</record>
+
+
+		<!--Datos de Ubicacion fisica/ area-->
+		<record id="area_presidencia" model="account.asset.area">
+		    <field name="code">01</field>
+		    <field name="name">PRESIDENCIA</field>
+		    <field name="cost_center_id" ref="centro_costo_adm"/>
+		    <field name="office_id" ref="oficina_sc"/>
+		</record>
+		<record id="area02" model="account.asset.area">
+		    <field name="code">02</field>
+		    <field name="name">SALA DE REUNIONES</field>
+		    <field name="cost_center_id" ref="centro_costo_adm"/>
+   		    <field name="office_id" ref="oficina_sc"/>
+		</record>
+		<record id="area03" model="account.asset.area">
+		    <field name="code">03</field>
+		    <field name="name">GERENCIA GENERAL</field>
+		    <field name="cost_center_id" ref="centro_costo_adm"/>
+   		    <field name="office_id" ref="oficina_sc"/>
+		</record>
+		<record id="area04" model="account.asset.area">
+		    <field name="code">04</field>
+		    <field name="name">CONTABILIDAD</field>
+		    <field name="cost_center_id" ref="centro_costo_adm"/>
+   		    <field name="office_id" ref="oficina_sc"/>
+		</record>
+		<record id="area05" model="account.asset.area">
+		    <field name="code">05</field>
+		    <field name="name">ARCHIVO CONTABILIDAD</field>
+		    <field name="cost_center_id" ref="centro_costo_adm"/>
+   		    <field name="office_id" ref="oficina_sc"/>
+		</record>
+		<record id="area06" model="account.asset.area">
+		    <field name="code">06</field>
+		    <field name="name">AUDITORIA INTERNA</field>
+		    <field name="cost_center_id" ref="centro_costo_adm"/>
+   		    <field name="office_id" ref="oficina_sc"/>
+		</record>
+		<record id="area07" model="account.asset.area">
+		    <field name="code">07</field>
+		    <field name="name">ADMINISTRACION</field>
+		    <field name="cost_center_id" ref="centro_costo_adm"/>
+   		    <field name="office_id" ref="oficina_sc"/>
+		</record>
+		<record id="area08" model="account.asset.area">
+		    <field name="code">08</field>
+		    <field name="name">DIAGRAMACION Y ARCHIVO</field>
+		    <field name="cost_center_id" ref="centro_costo_adm"/>
+   		    <field name="office_id" ref="oficina_sc"/>
+		</record>
+		<record id="area09" model="account.asset.area">
+		    <field name="code">09</field>
+		    <field name="name">ARCHIVO CENTRAL</field>
+		    <field name="cost_center_id" ref="centro_costo_adm"/>
+   		    <field name="office_id" ref="oficina_sc"/>
+		</record>
+		<record id="area10" model="account.asset.area">
+		    <field name="code">10</field>
+		    <field name="name">ALMACEN - ADMINISTRACION</field>
+		    <field name="cost_center_id" ref="centro_costo_adm"/>
+   		    <field name="office_id" ref="oficina_sc"/>
+		</record>
+		<record id="area11" model="account.asset.area">
+		    <field name="code">11</field>
+		    <field name="name">ALMACEN - INSUMOS</field>
+		    <field name="cost_center_id" ref="centro_costo_adm"/>
+   		    <field name="office_id" ref="oficina_sc"/>
+		</record>
+		<record id="area12" model="account.asset.area">
+		    <field name="code">12</field>
+		    <field name="name">ALMACEN - MATERIA PRIMA</field>
+		    <field name="cost_center_id" ref="centro_costo_adm"/>
+   		    <field name="office_id" ref="oficina_sc"/>
+		</record>
+		<record id="area13" model="account.asset.area">
+		    <field name="code">13</field>
+		    <field name="name">CENTRO DE COMPUTO</field>
+		    <field name="cost_center_id" ref="centro_costo_adm"/>
+   		    <field name="office_id" ref="oficina_sc"/>
+		</record>
+		<record id="area14" model="account.asset.area">
+		    <field name="code">14</field>
+		    <field name="name">CAFETERIA</field>
+		    <field name="cost_center_id" ref="centro_costo_adm"/>
+   		    <field name="office_id" ref="oficina_sc"/>
+		</record>
+		<record id="area15" model="account.asset.area">
+		    <field name="code">15</field>
+		    <field name="name">COMEDOR</field>
+		    <field name="cost_center_id" ref="centro_costo_adm"/>
+   		    <field name="office_id" ref="oficina_sc"/>
+		</record>
+		<record id="area16" model="account.asset.area">
+		    <field name="code">16</field>
+		    <field name="name">DEPARTAMENTO DEL SERENO</field>
+		    <field name="cost_center_id" ref="centro_costo_adm"/>
+   		    <field name="office_id" ref="oficina_sc"/>
+		</record>
+		<record id="area17" model="account.asset.area">
+		    <field name="code">17</field>
+		    <field name="name">PORTERIA</field>
+		    <field name="cost_center_id" ref="centro_costo_adm"/>
+   		    <field name="office_id" ref="oficina_sc"/>
+		</record>
+		<record id="area18" model="account.asset.area">
+		    <field name="code">18</field>
+		    <field name="name">AREA DE CHURRASQUERA</field>
+		    <field name="cost_center_id" ref="centro_costo_adm"/>
+   		    <field name="office_id" ref="oficina_sc"/>
+		</record>
+		<record id="area19" model="account.asset.area">
+		    <field name="code">19</field>
+		    <field name="name">COMERCIAL</field>
+		    <field name="cost_center_id" ref="centro_costo_com"/>
+   		    <field name="office_id" ref="oficina_sc"/>
+		</record>
+		<record id="area20" model="account.asset.area">
+		    <field name="code">20</field>
+		    <field name="name">ARCHIVO COMERCIAL</field>
+		    <field name="cost_center_id" ref="centro_costo_com"/>
+   		    <field name="office_id" ref="oficina_sc"/>
+		</record>
+		<record id="area21" model="account.asset.area">
+		    <field name="code">21</field>
+		    <field name="name">SUCURSAL COCHABAMBA</field>
+		    <field name="cost_center_id" ref="centro_costo_com"/>
+   		    <field name="office_id" ref="oficina_cbba"/>
+		</record>
+		<record id="area22" model="account.asset.area">
+		    <field name="code">22</field>
+		    <field name="name">SUCURSAL LA PAZ</field>
+		    <field name="cost_center_id" ref="centro_costo_com"/>
+   		    <field name="office_id" ref="oficina_lp"/>
+		</record>
+		<record id="area23" model="account.asset.area">
+		    <field name="code">23</field>
+		    <field name="name">PRODUCCION - GERENCIA</field>
+		    <field name="cost_center_id" ref="centro_costo_prod"/>
+   		    <field name="office_id" ref="oficina_sc"/>
+		</record>
+		<record id="area24" model="account.asset.area">
+		    <field name="code">24</field>
+		    <field name="name">PRODUCCION - MAQUINAS</field>
+		    <field name="cost_center_id" ref="centro_costo_prod"/>
+   		    <field name="office_id" ref="oficina_sc"/>
+		</record>
+		<record id="area25" model="account.asset.area">
+		    <field name="code">25</field>
+		    <field name="name">GUILLOTINA Y COMPAGINADO</field>
+		    <field name="cost_center_id" ref="centro_costo_prod"/>
+   		    <field name="office_id" ref="oficina_sc"/>
+		</record>
+		<record id="area26" model="account.asset.area">
+		    <field name="code">26</field>
+		    <field name="name">FOTOMECANICA</field>
+		    <field name="cost_center_id" ref="centro_costo_prod"/>
+   		    <field name="office_id" ref="oficina_sc"/>
+		</record>
+		<record id="area27" model="account.asset.area">
+		    <field name="code">27</field>
+		    <field name="name">AREA DE COMPRESORES</field>
+		    <field name="cost_center_id" ref="centro_costo_prod"/>
+   		    <field name="office_id" ref="oficina_sc"/>
+		</record>
+		<record id="area28" model="account.asset.area">
+		    <field name="code">28</field>
+		    <field name="name">VESTIDORES</field>
+		    <field name="cost_center_id" ref="centro_costo_prod"/>
+   		    <field name="office_id" ref="oficina_sc"/>
+		</record>
+
+    </data>
+</openerp>
