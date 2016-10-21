@@ -18,9 +18,9 @@
 
 {
     "name": "MRP - Production Printing Industry",
-    "version": "1.0",
+    "version": "8.0",
     "author": "Siscruz,"
-              "Consulting Business Solution - Rolando Gonzales",
+              "Consulting Business Solution - Rolando Gonzales L.",
     "website": "http://www.siscruz.com",
     "contributors": [
         "Rolando Gonzales <rgonzales@siscruz.com>"
