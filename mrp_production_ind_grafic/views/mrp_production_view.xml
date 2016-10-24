@@ -250,7 +250,7 @@
                         <field name="raw_material_lines" nolabel="1" >
                             <tree string="Material" editable="bottom">
                                 <field name="name" widget="selection"/>
-                                <field name="kg" style="width:5px" />
+                                <field name="kg" style="width:10px" />
                                 <field name="percentage"/>
                                 <field name="demasia"/>
                                 <field name="total"/>

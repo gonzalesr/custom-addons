@@ -24,17 +24,17 @@ class RawMaterial(models.Model):
         string='KG',required=False)
     percentage = fields.Float(
         string='% demasia',digits=(6,2),required=False)
-    demasia = fields.Float(
-        string='Demasia',digits=(6,2),required=False)    
-    total = fields.Float(
-        string='Total',digits=(6,2),required=False)
-    paper_processing = fields.Float(
-        string='Papel Procesado',digits=(6,2),required=False)
-    total_load = fields.Float(
-        string='Carga Total',digits=(8,1),required=False)
+    demasia = fields.Integer(
+        string='Demasia',required=False)    
+    total = fields.Integer(
+        string='Total',required=False)
+    paper_processing = fields.Integer(
+        string='Papel Procesado',required=False)
+    total_load = fields.Integer(
+        string='Carga Total',required=False)
     coil_width = fields.Float(
         string='Ancho de Bobina',digits=(6,2),required=False)
     high_form = fields.Float(
         string='Alto de Formulario',digits=(6,2),required=False)
     unid_high_form = fields.Selection([('pulg','Pulgadas'),('cm','Cm')], string='Unidad')
-    armed = fields.Float(string='Armado',digits=(6,2),required=False)
+    armed = fields.Integer(string='Armado',required=False)
