@@ -19,11 +19,11 @@ class RawMaterial(models.Model):
     ord_id = fields.Many2one('mrp.production', 'Orden de Produccion',required=1, ondelete='cascade')
     name= fields.Selection([('Bond', 'Bond'), ('Termico', 'Térmico'), ('Q-CB', 'Q - CB'),('Q-CF','Q-CF'),
         ('Q-CFB', 'Q-CFB')],
-        string='Papel')
+        string='Tipo Papel')
     kg = fields.Integer(
-        string='KG',required=False)
+        string='KG  ',required=False)
     percentage = fields.Float(
-        string='% demasia',digits=(6,2),required=False)
+        string='% Demas',digits=(6,2),required=False)
     demasia = fields.Integer(
         string='Demasia',required=False)    
     total = fields.Integer(
@@ -35,6 +35,6 @@ class RawMaterial(models.Model):
     coil_width = fields.Float(
         string='Ancho de Bobina',digits=(6,2),required=False)
     high_form = fields.Float(
-        string='Alto de Formulario',digits=(6,2),required=False)
+        string='Alto Formulario',digits=(6,2),required=False)
     unid_high_form = fields.Selection([('pulg','Pulgadas'),('cm','Cm')], string='Unidad')
     armed = fields.Integer(string='Armado',required=False)

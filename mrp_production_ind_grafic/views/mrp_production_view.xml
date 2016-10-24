@@ -246,15 +246,18 @@
                     <group>
                         <field name="routing_id"/>
                     </group>
+                </xpath>
+
+                <xpath expr="//group[@string='Consumed Products']" position="after">
                     <group string="Materia Prima" colspan="6">
                         <field name="raw_material_lines" nolabel="1" >
                             <tree string="Material" editable="bottom">
                                 <field name="name" widget="selection"/>
-                                <field name="kg" style="width:10px" />
+                                <field name="kg" style="width: 10%"/>
                                 <field name="percentage"/>
                                 <field name="demasia"/>
                                 <field name="total"/>
-                                <field name="paper_processing" />
+                                <field name="paper_processing" style="width: 10%" />
                                 <field name="total_load" />
                                 <field name="coil_width" />
                                 <field name="high_form" />
@@ -263,8 +266,7 @@
                             </tree>
                         </field>
                     </group>
-                </xpath>
-                <xpath expr="//group[@string='Consumed Products']" position="after">
+
                     <group string="Placas/Tintas e Insumos">
                         <field name="plaque"/>
                         <field name="box"/>
