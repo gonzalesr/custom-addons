@@ -81,12 +81,12 @@
                 </field>
                 
                 <!--ALMACEN DE ORIGEN - ALMACEN DE DESTINO -->
-                <field name="location_src_id" position="attributes">
+                <!-- <field name="location_src_id" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </field>
                 <field name="location_dest_id" position="attributes">
                     <attribute name="invisible">1</attribute>
-                </field>
+                </field> -->
 
                 <field name="date_planned" position="attributes">
                     <attribute name="invisible">1</attribute>
@@ -226,11 +226,13 @@
                             <group string="Fecha ingreso">
                                 <field name="date_entry" />
                                 <field name="date_entry_s" />
+                                <field name="note_diagram"/>
                             </group>
                             <group string="Fecha entrega">
                                 <field name="date_delivery" />
                                 <field name="date_delivery_s" />
                             </group>
+
                         </group>
                     </page>
                 </xpath>

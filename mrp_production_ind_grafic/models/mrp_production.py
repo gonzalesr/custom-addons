@@ -342,6 +342,7 @@ class MrpProduction(models.Model):
     date_entry_s = fields.Datetime('Fecha y hora ingreso')
     date_delivery = fields.Datetime('Fecha y hora entrega')
     date_delivery_s = fields.Datetime('Fecha y hora entrega')
+    note_diagram = fields.Text('Otros')
     
     # Caracteristicas tecnicas para produccion
     plaque = fields.Char(string='Placa')
