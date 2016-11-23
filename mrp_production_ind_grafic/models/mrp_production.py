@@ -147,7 +147,22 @@ class MrpProduction(models.Model):
         else:
             self.unid_width = ''
             self.unid_high = '' 
-    
+            
+    # def onchange_product_tmpl_id(self, cr, uid, ids, product_tmpl_id, product_qty=0, context=None):
+    #     """ Changes UoM and name if product_id changes.
+    #     @param product_id: Changed product_id
+    #     @return:  Dictionary of changed values
+    #     """
+    #     res = {}
+    #     if product_tmpl_id:
+    #         prod = self.pool.get('product.template').browse(cr, uid, product_tmpl_id, context=context)
+    #         res['value'] = {
+    #             'name': prod.name,
+    #             'product_uom': prod.uom_id.id,
+    #         }
+    #     return res
+
+    @api.multi
     @api.onchange('price_for','product_qty','box_cant','block_cant','unit_price')
     def onchange_unit_price(self):
         if self.price_for == 'millar':
@@ -157,7 +172,9 @@ class MrpProduction(models.Model):
         elif self.price_for == 'block':
             self.total_price = self.unit_price * self.block_cant
         elif self.price_for == 'unidad':
-            self.total_price = self.unit_price * self.product_qty 
+            self.total_price = self.unit_price * self.product_qty
+        else:
+            self.total_price = self.unit_price * self.product_qty
 
     @api.onchange('type_work')
     def onchange_type_work(self):
@@ -167,29 +184,29 @@ class MrpProduction(models.Model):
                 'title': 'Advertencia!',
                 'message': 'Debe seleccionar el tipo de trabajo'}
                 }
-    @api.one
-    @api.constrains('type_work','width','height','cod_partner_product','nit_ci','street','phone')
-    def _check_type_work_size(self):
-        cad = ''
-        if self.type_work == False:
-            cad = 'Debe seleccionar el tipo de trabajo\n'
-        if self.width == 0:
-            cad += 'Debe ingresar el ancho del formulario\n'
-        if self.height == 0:
-            cad += 'Debe ingresar el alto del formulario'
-        print str(len(self.cod_partner_product)) + 'holaaaaaaaaaaaa'
-        if len(self.cod_partner_product) == 0:
-            cad += 'Debe ingresar el código en el dato maestro del cliente\n'
-        if len(self.nit_ci) == 0:
-            cad += 'Debe ingresar el NIT en el dato maestro del cliente\n'
-        if len(self.street) == 0:
-            cad += 'Debe ingresar la dirección en el dato maestro del cliente\n'
-        if len(self.phone) == 0:
-            cad += 'Debe ingresar el teléfono en el dato maestro del cliente\n'
+    # @api.one
+    # @api.constrains('type_work','width','height','cod_partner_product','nit_ci','street','phone')
+    # def _check_type_work_size(self):
+    #     cad = ''
+    #     if self.type_work == False:
+    #         cad = 'Debe seleccionar el tipo de trabajo\n'
+    #     if self.width == 0:
+    #         cad += 'Debe ingresar el ancho del formulario\n'
+    #     if self.height == 0:
+    #         cad += 'Debe ingresar el alto del formulario'
+    #     # print str(len(self.cod_partner_product)) + 'holaaaaaaaaaaaa'
+    #     if len(self.cod_partner_product) == 0:
+    #         cad += 'Debe ingresar el código en el dato maestro del cliente\n'
+    #     if len(self.nit_ci) == 0:
+    #         cad += 'Debe ingresar el NIT en el dato maestro del cliente\n'
+    #     if len(self.street) == 0:
+    #         cad += 'Debe ingresar la dirección en el dato maestro del cliente\n'
+    #     if len(self.phone) == 0:
+    #         cad += 'Debe ingresar el teléfono en el dato maestro del cliente\n'
 
 
-        if len(cad) >0:
-            raise ValidationError(cad)
+    #     if len(cad) >0:
+    #         raise ValidationError(cad)
 
     def action_ok_customer(self):
         """ Approves customer production order.
