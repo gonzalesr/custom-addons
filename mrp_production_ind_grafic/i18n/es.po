@@ -1466,6 +1466,16 @@ msgid "Production Started"
 msgstr "Producción iniciada"
 
 #. module: mrp
+#: selection:mrp.production,state:0
+msgid "Diagramming"
+msgstr "Diagramación"
+
+#. module: mrp
+#: selection:mrp.production,state:0
+msgid "Ok Customer"
+msgstr "Aprobado Cliente"
+
+#. module: mrp
 #: view:mrp.production:mrp.mrp_production_form_view
 msgid "Production Work Centers"
 msgstr "Centros de trabajo de producción"
@@ -2149,7 +2159,7 @@ msgid ""
 "                If the stock is available then the status is set to 'Ready to Produce'.\n"
 "                When the production gets started then the status is set to 'In Production'.\n"
 "                When the production is over, the status is set to 'Done'."
-msgstr "Cuando se crea una orden de fabricación, su estado es 'Borrador'.\nSi la orden se confirma, su estado pasa a 'Esperando materias primas'.\nSi ocurre algún excepción, el estado para a 'Excepción de acopio'.\nSi el stock está disponible, entonces el estado se establece a 'Listo para producir'.\nCuando la producción se ha iniciado, entonces el estado pasa a ser 'En producción'.\nCuando la producción ha terminado, el estado es 'Realizada'."
+msgstr "Cuando se crea una orden de fabricación, su estado es 'Borrador'.\nSi la orden se confirma, su estado pasa a 'Esperando materias primas'.\nSi ocurre algún excepción, el estado pasa a 'Excepción de acopio'.\nSi el stock está disponible, entonces el estado se establece a 'Listo para producir'.\nCuando la producción se ha iniciado, entonces el estado pasa a ser 'En producción'.\nCuando la producción ha terminado, el estado es 'Realizada'."
 
 #. module: mrp
 #: model:ir.model,name:mrp.model_mrp_workcenter
